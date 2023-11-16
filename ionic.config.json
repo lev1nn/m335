@@ -1,0 +1,7 @@
+{
+  "name": "m335",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
