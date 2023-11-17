@@ -20,12 +20,11 @@ export class CameraComponent {
   async takePicture() {
     try {
       const image = await Camera.getPhoto({
-        resultType: CameraResultType.Uri,
+        resultType: CameraResultType.Base64,
         source: CameraSource.Camera,
         quality: 100,
       });
-
-      this.pictureTaken.emit(image.webPath);
+      localStorage.setItem('picture', image.base64String || '');
     } catch (error) {
       console.error('Error capturing picture', error);
     }
