@@ -24,9 +24,10 @@ export class CameraComponent {
         source: CameraSource.Camera,
         quality: 100,
       });
-      localStorage.setItem('picture', image.base64String || '');
+      return image.base64String;
     } catch (error) {
       console.error('Error capturing picture', error);
+      return undefined;
     }
   }
 }
