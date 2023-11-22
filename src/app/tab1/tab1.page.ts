@@ -58,7 +58,7 @@ export class Tab1Page implements OnInit {
   }
 
   getGeoLocation() {
-    Geolocation.getCurrentPosition().then((res) => {
+    Geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((res) => {
       if (this.photo) {
         this.photo.geolocation = {
           latitude: res.coords.latitude,
