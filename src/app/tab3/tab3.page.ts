@@ -12,6 +12,7 @@ import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../models/photo.model';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -34,7 +35,11 @@ export class Tab3Page {
   private client: SupabaseClient;
   public image: Photo | undefined;
 
-  constructor(private route: ActivatedRoute, private datePipe: DatePipe) {
+  constructor(
+    private route: ActivatedRoute,
+    private datePipe: DatePipe,
+    private router: Router
+  ) {
     this.client = createClient(
       environment.supabaseUrl,
       environment.supabaseClient
@@ -66,6 +71,12 @@ export class Tab3Page {
       .then((res) => {
         console.log('Image deleted:', res);
       });
+
+    this.returnToLibrary();
+  }
+
+  returnToLibrary() {
+    this.router.navigate(['/tabs', 'tab2']);
   }
 
   formatDate(dateString: string | undefined): string {
