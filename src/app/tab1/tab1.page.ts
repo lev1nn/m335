@@ -13,13 +13,21 @@ import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 import { decode } from 'base64-arraybuffer';
 import { image } from 'ionicons/icons';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, CameraComponent],
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    CameraComponent,
+    CommonModule,
+  ],
 })
 export class Tab1Page implements OnInit {
   @ViewChild(CameraComponent) cameraComponent: CameraComponent | undefined;
@@ -40,7 +48,7 @@ export class Tab1Page implements OnInit {
           .takePicture()
           .then((content: string | undefined) => {
             if (this.photo && content) {
-              this.photo.base64 = content;
+              this.photo.url = content;
               this.photo.dateTime = new Date().toISOString();
               this.getGeoLocation();
               this.getBatteryLevel();
@@ -60,10 +68,8 @@ export class Tab1Page implements OnInit {
   getGeoLocation() {
     Geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((res) => {
       if (this.photo) {
-        this.photo.geolocation = {
-          latitude: res.coords.latitude,
-          longitude: res.coords.longitude,
-        };
+        this.photo.latitude = res.coords.latitude;
+        this.photo.longitude = res.coords.longitude;
       }
     });
   }
@@ -115,10 +121,10 @@ export class Tab1Page implements OnInit {
   async sendImageMessage() {
     let id = this.uuidv4();
     let file = `public/${id}.png`;
-    console.log(decode(this.photo?.base64 || ''));
+    console.log(decode(this.photo?.url || ''));
     let { data: fileData } = await this.client.storage
       .from('images')
-      .upload(file, decode(this.photo?.base64 || ''), {
+      .upload(file, decode(this.photo?.url || ''), {
         contentType: 'image/png',
       });
 
@@ -134,8 +140,8 @@ export class Tab1Page implements OnInit {
         {
           url: url.publicUrl,
           dateTime: this.photo?.dateTime,
-          latitude: this.photo?.geolocation?.latitude,
-          longitude: this.photo?.geolocation?.longitude,
+          latitude: this.photo?.latitude,
+          longitude: this.photo?.longitude,
           batteryLevel: this.photo?.batteryLevel,
         },
       ])
