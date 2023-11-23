@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { decode } from 'base64-arraybuffer';
 import { image } from 'ionicons/icons';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -54,6 +55,8 @@ export class Tab1Page implements OnInit {
               this.getBatteryLevel();
 
               this.sendImageMessage();
+
+              this.returnToLibrary();
             }
           })
           .catch((error: any) => {
@@ -98,7 +101,7 @@ export class Tab1Page implements OnInit {
 
   private client: SupabaseClient;
 
-  constructor() {
+  constructor(private router: Router) {
     this.client = createClient(
       environment.supabaseUrl,
       environment.supabaseClient
@@ -148,5 +151,9 @@ export class Tab1Page implements OnInit {
       .select();
 
     return data;
+  }
+
+  returnToLibrary() {
+    this.router.navigate(['/tabs', 'tab2']);
   }
 }
