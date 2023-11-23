@@ -1,0 +1,28 @@
+.details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .image-container {
+    padding: 15px;
+    overflow: hidden;
+    text-align: center;
+
+    img {
+      width: 100%;
+      border-radius: 25px;
+      margin-bottom: 20px;
+      //aspect-ratio: 1;
+      object-fit: cover;
+      max-height: 60vh;
+    }
+  }
+
+  .button {
+    padding: 15px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+}

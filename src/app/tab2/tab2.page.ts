@@ -52,4 +52,8 @@ export class Tab2Page {
       this.images = images as [Photo];
     }
   }
+
+  openDetailView(imageId: number) {
+    this.router.navigate(['/tabs', 'tab3', imageId]);
+  }
 }

@@ -13,4 +13,17 @@
       <ion-title size="large">Details</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="details">
+    <div class="image-container">
+      <img [src]="image?.url" alt="" />
+      Time & Date: {{ formatDate(image?.dateTime) }} <br />
+      Location: {{ image?.latitude | number : "1.2-4" }} lat / {{
+      image?.longitude | number : "1.2-4" }} lng <br />
+      Battery Level: {{ image?.batteryLevel | number : "1.2-2" }} <br />
+    </div>
+    <ion-button color="dark" class="button" (click)="deleteImage()"
+      >Delete</ion-button
+    >
+  </div>
 </ion-content>
