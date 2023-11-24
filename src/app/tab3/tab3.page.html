@@ -20,7 +20,8 @@
       Time & Date: {{ formatDate(image?.dateTime) }} <br />
       Location: {{ image?.latitude | number : "1.2-4" }} lat / {{
       image?.longitude | number : "1.2-4" }} lng <br />
-      Battery Level: {{ image?.batteryLevel | number : "1.2-2" }} <br />
+      Battery Level: {{ ((image?.batteryLevel || 0) * 100) | number : "1.0-0" }}%
+      <br />
     </div>
     <ion-button color="dark" class="button" (click)="deleteImage()"
       >Delete Image</ion-button
