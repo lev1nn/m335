@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">m335</string>
-    <string name="title_activity_main">m335</string>
-    <string name="package_name">ionic.m335</string>
-    <string name="custom_url_scheme">ionic.m335</string>
+    <string name="app_name">PepePix</string>
+    <string name="title_activity_main">PepePix</string>
+    <string name="package_name">com.levin.schaller.pepepix</string>
+    <string name="custom_url_scheme">com.levin.schaller.pepepix</string>
 </resources>

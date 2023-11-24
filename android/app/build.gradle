@@ -4,7 +4,7 @@ android {
     namespace "ionic.m335"
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "ionic.m335"
+        applicationId "com.levin.schaller.pepepix"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
