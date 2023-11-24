@@ -17,7 +17,7 @@
     <div
       class="image-container"
       *ngFor="let image of images"
-      (click)="openDetailView(image.id)"
+      (click)="openDetailView(image.id || 0)"
     >
       <img src="{{ image.url }}" alt="" /> <br />
     </div>
