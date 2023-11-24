@@ -6,13 +6,13 @@ import {
   IonContent,
   IonButton,
 } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { ActivatedRoute } from '@angular/router';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../models/photo.model';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { ImageService } from '../service/image.service';
 
 @Component({
   selector: 'app-tab3',
@@ -24,7 +24,6 @@ import { Router } from '@angular/router';
     IonToolbar,
     IonTitle,
     IonContent,
-    ExploreContainerComponent,
     IonButton,
     CommonModule,
     DatePipe,
@@ -32,45 +31,29 @@ import { Router } from '@angular/router';
   providers: [DatePipe],
 })
 export class Tab3Page {
-  private client: SupabaseClient;
   public image: Photo | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private datePipe: DatePipe,
-    private router: Router
-  ) {
-    this.client = createClient(
-      environment.supabaseUrl,
-      environment.supabaseClient
-    );
-  }
+    private router: Router,
+    private imageService: ImageService
+  ) {}
 
   async ionViewWillEnter() {
     const id = this.route.snapshot.paramMap.get('id');
-    let error!: Error | undefined;
 
-    const { data: image, error: fetchError } = await this.client
-      .from('images')
-      .select('*')
-      .eq('id', id)
-      .single();
-
-    if (error) {
-      console.error('Error fetching images:', error);
-    } else {
-      this.image = image as Photo;
+    if (id) {
+      this.imageService.getImageById(+id).then((res) => {
+        if (res) {
+          this.image = res;
+        }
+      });
     }
   }
 
   deleteImage() {
-    this.client
-      .from('images')
-      .delete()
-      .eq('id', this.image?.id)
-      .then((res) => {
-        console.log('Image deleted:', res);
-      });
+    this.imageService.deleteImageById(this.image?.id || 0);
 
     this.returnToLibrary();
   }
