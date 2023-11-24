@@ -15,5 +15,14 @@
   </ion-header>
   <!-- <div *ngIf="photo?.url; else error">Successful</div>
   <ng-template #error>Error</ng-template> -->
-  <app-camera></app-camera>
+  <ion-button color="dark" class="button" id="button1" (click)="takePicture()"
+    >Take Picture</ion-button
+  >
+  <ion-button
+    color="medium"
+    class="button"
+    id="button2"
+    (click)="returnToLibrary()"
+    >Return to Library</ion-button
+  >
 </ion-content>
