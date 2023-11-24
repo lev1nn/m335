@@ -5,8 +5,6 @@ import {
   IonTitle,
   IonContent,
 } from '@ionic/angular/standalone';
-import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
 import { Photo } from '../models/photo.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';

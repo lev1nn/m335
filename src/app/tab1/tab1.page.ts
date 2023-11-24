@@ -7,8 +7,6 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { Photo } from '../models/photo.model';
-import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CameraService } from '../service/camera.service';
@@ -29,19 +27,13 @@ import { ImageService } from '../service/image.service';
   ],
 })
 export class Tab1Page implements OnInit {
-  private client: SupabaseClient;
   public photo?: Photo = undefined;
 
   constructor(
     private router: Router,
     private camaraService: CameraService,
     private imageService: ImageService
-  ) {
-    this.client = createClient(
-      environment.supabaseUrl,
-      environment.supabaseClient
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.photo = {} as Photo;

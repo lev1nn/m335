@@ -7,8 +7,6 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
-import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
 import { Photo } from '../models/photo.model';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
