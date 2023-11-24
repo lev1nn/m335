@@ -1,3 +1,15 @@
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+
+  #refresh-button {
+    filter: invert(100%);
+    width: 30px;
+    margin-right: 10px;
+  }
+}
+
 .library {
   width: 100%;
   display: flex;

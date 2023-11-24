@@ -32,6 +32,12 @@ export class Tab2Page {
     });
   }
 
+  refreshData() {
+    this.imageService.getAllImages().then((res) => {
+      this.images = res;
+    });
+  }
+
   openDetailView(imageId: number) {
     this.router.navigate(['/tabs', 'tab3', imageId]);
   }
